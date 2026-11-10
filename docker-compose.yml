@@ -1,0 +1,24 @@
+services:
+  # ---------- Servidor web con PHP ----------
+  web:
+    build: .
+    container_name: practica11_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/var/www/html
+    depends_on:
+      - db
+
+  # ---------- Base de datos MySQL/MariaDB ----------
+  db:
+    image: mariadb:11
+    container_name: practica11_db
+    environment:
+      MARIADB_ROOT_PASSWORD: root_password
+      MARIADB_DATABASE: libreria
+      MARIADB_USER: usuario
+      MARIADB_PASSWORD: "123456"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db_data:/var/lib/mysql
