@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte - Práctica 11: HTML + PHP + SQL + Bootstrap</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 40px;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #1e3a8a;
+            border-bottom: 3px solid #1e3a8a;
+            padding-bottom: 8px;
+        }
+
+        h2 {
+            color: #1e3a8a;
+            margin-top: 35px;
+        }
+
+        .datos {
+            background: #f1f5f9;
+            padding: 15px 20px;
+            border-radius: 8px;
+        }
+
+        figure {
+            margin: 25px 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        figure img {
+            max-width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        figcaption {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #1e3a8a;
+            color: white;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .pie {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #94a3b8;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Práctica 11: HTML + PHP + SQL + Bootstrap</h1>
+
+    <div class="datos">
+        <p><strong>Alumno:</strong> Adrian Huelga Correa</p>
+        <p><strong>Materia:</strong> Programación para Internet (SIS3410)</p>
+        <p><strong>Universidad:</strong> Universidad Anáhuac México Norte</p>
+        <p><strong>Descripción:</strong> Mini-sistema de registro de libros para una librería,
+            hecho con PHP, MariaDB (en Docker) y Bootstrap 5.</p>
+    </div>
+
+    <h2>1. Página de inicio</h2>
+    <p>Página de bienvenida con la barra de navegación de Bootstrap que lleva a las tres secciones
+        del sistema.</p>
+    <figure>
+        <img src="cap_inicio.png" alt="Página de inicio">
+        <figcaption>Figura 1. Página de inicio con navegación.</figcaption>
+    </figure>
+
+    <h2>2. Página de registro</h2>
+    <p>Formulario para dar de alta un libro: autor, título, fecha de publicación e imagen de portada.
+        La imagen se envía con <code>enctype="multipart/form-data"</code> y se guarda en la base de
+        datos como dato binario (<strong>BLOB</strong>).</p>
+    <figure>
+        <img src="cap_registro.png" alt="Página de registro">
+        <figcaption>Figura 2. Formulario de registro de libros.</figcaption>
+    </figure>
+
+    <h2>3. Página de consulta</h2>
+    <p>Lista todos los libros registrados en la base de datos. Cada libro se muestra en una tarjeta
+        de Bootstrap, y la portada se recupera del BLOB y se muestra con
+        <code>data:image/jpeg;base64,...</code>.</p>
+    <figure>
+        <img src="cap_consulta.png" alt="Página de consulta">
+        <figcaption>Figura 3. Consulta de los libros registrados con su portada.</figcaption>
+    </figure>
+
+    <h2>4. Base de datos</h2>
+    <p>Base de datos relacional <strong>libreria</strong> en un contenedor MariaDB.</p>
+    <table>
+        <tr>
+            <th>Campo</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>INT (PK)</td>
+            <td>Identificador del libro</td>
+        </tr>
+        <tr>
+            <td>autor</td>
+            <td>VARCHAR(100)</td>
+            <td>Nombre del autor</td>
+        </tr>
+        <tr>
+            <td>titulo</td>
+            <td>VARCHAR(150)</td>
+            <td>Título del libro</td>
+        </tr>
+        <tr>
+            <td>fecha_publicacion</td>
+            <td>DATE</td>
+            <td>Fecha de publicación</td>
+        </tr>
+        <tr>
+            <td>portada</td>
+            <td>BLOB</td>
+            <td>Imagen de la portada (binario)</td>
+        </tr>
+    </table>
+
+    <h2>5. Tecnologías utilizadas</h2>
+    <ul>
+        <li><strong>PHP 8.2</strong> con Apache (contenedor Docker).</li>
+        <li><strong>MariaDB 11</strong> en un contenedor Docker.</li>
+        <li><strong>Bootstrap 5</strong> (CDN) para todos los elementos de las páginas.</li>
+        <li><strong>Docker Compose</strong> para levantar el sistema completo.</li>
+        <li><strong>GD</strong> de PHP para redimensionar y comprimir la portada antes de guardarla.</li>
+    </ul>
+
+    <h2>6. Cómo se ejecuta</h2>
+    <p>Con Docker Desktop abierto:</p>
+    <pre><code>docker compose up -d --build</code></pre>
+    <p>y se abre <code>http://localhost:8080/index.php</code>.</p>
+
+    <h2>7. Control de versiones</h2>
+    <p>El proyecto se desarrolló con Git. El repositorio local contiene commits progresivos
+        (configuración inicial, página de inicio, registro, consulta, volcado y reporte) y
+        posteriormente se vinculó con GitHub.</p>
+
+    <p class="pie">Práctica 11 · Adrian Huelga Correa · Programación para Internet</p>
+
+</body>
+
+</html>
