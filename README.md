@@ -2,6 +2,8 @@
 
 Mini-sistema de registro de libros para una librería (preámbulo del proyecto final).
 
+**Repositorio:** https://github.com/adrianhc22/PPI_Practica11
+
 ## Páginas
 - **Inicio** (`index.php`): bienvenida y navegación.
 - **Registro** (`registro.php`): formulario para agregar un libro (autor, título, fecha y portada).
